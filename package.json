@@ -1,0 +1,29 @@
+{
+  "name": "project-buddy",
+  "version": "1.0.0",
+  "description": "A web project to provide an platform to share complete project data/Information with other users. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naveenitin/Project-Buddy.git"
+  },
+  "author": "Naveen Gaur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naveenitin/Project-Buddy/issues"
+  },
+  "homepage": "https://github.com/Naveenitin/Project-Buddy#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.17",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.0.1"
+  }
+}
