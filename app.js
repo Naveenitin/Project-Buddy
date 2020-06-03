@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/project-buddy', {useNewUrlParser: tr
 var app = express();
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static("public"));
 
 app.use(require("express-session")({
     secret:"This is used encode and decode session,this can be anything",
@@ -35,7 +36,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //  show sign up form
-app.get("/register",function(req,res){
+app.get("/register",prevent,function(req,res){
     res.render("register");
 });
 
@@ -56,7 +57,7 @@ app.post("/register",function(req,res){
 
 // LOGIN ROUTES
 // render login form
-app.get("/login",function(req,res){
+app.get("/login",prevent,function(req,res){
     res.render("login");
 });
 
@@ -69,11 +70,11 @@ app.post("/login",passport.authenticate("local",{
 
 
 app.get("/",function(req,res){
-    res.render("home");
+    res.render("home",{login:req.isAuthenticated()});
 });
 
 app.get("/secret",isLoggedIn,function(req,res){
-    res.render("secret");
+    res.render("secret",{login:req.isAuthenticated()});
 });
 
 app.get("/logout",function(req,res){
@@ -88,6 +89,13 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     res.redirect("/login");
+}
+//  this is function prevent access and login page from loged in user.
+function prevent(req, res, next) {
+    if(!req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/");
 }
 
 app.listen(3000,()=>{
