@@ -5,7 +5,8 @@ var bodyParser = require("body-parser");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var User = require("./modules/user");
-mongoose.connect('mongodb://localhost:27017/project-buddy', {useNewUrlParser: true, useUnifiedTopology: true});
+var URL = process.env.databaseURL || 'mongodb://localhost:27017/project-buddy' ;
+mongoose.connect(URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //  app configurations
 var app = express();
@@ -69,6 +70,7 @@ app.post("/login",passport.authenticate("local",{
 });
 
 
+
 app.get("/",function(req,res){
     res.render("home",{login:req.isAuthenticated()});
 });
@@ -98,6 +100,7 @@ function prevent(req, res, next) {
     res.redirect("/");
 }
 
-app.listen(3000,()=>{
-    console.log("Server is started on port 3000");
+var port= process.env.PORT || 3000 ;
+app.listen(port,process.env.IP,()=>{
+    console.log("Server is started");
 });
