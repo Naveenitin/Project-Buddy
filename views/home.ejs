@@ -1,4 +1,7 @@
 <%- include("partials/headerHome") %> 
+<div style="margin: 100px;">
+
+</div>
 <div class="row">
     <div class="col-12 col-md-3">
         <nav class="sidebar">
@@ -29,7 +32,7 @@
             <p class="text-right"><small><%= obj.date.toDateString() %></small></p>
             <p class="text-left" ><small>By:-<%= obj.username %></small></p>
             <blockquote><%= obj.idea %></blockquote>
-            <div><%- obj.description.substring(0,100) %>....<a class="btn btn-sm btn-outline-primary" href="#">Read more <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></a></div>
+            <div><span></span><%- obj.description.substring(0,100) %></span>....<a class="btn btn-sm btn-outline-primary" href="#">Read more <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></a></div>
         </div>
         <% }) %>
     </div>
