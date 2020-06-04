@@ -2,10 +2,12 @@ var express = require("express");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var bodyParser = require("body-parser");
+var expressSanitizer = require("express-sanitizer");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var User = require("./modules/user");
 var project = require("./modules/project");
+
 var URL = process.env.databaseURL || 'mongodb://localhost:27017/project-buddy' ;
 mongoose.connect(URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -14,7 +16,7 @@ var app = express();
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
-
+app.use(expressSanitizer());
 app.use(require("express-session")({
     secret:"This is used encode and decode session,this can be anything",
     resave: false,
@@ -51,7 +53,7 @@ app.post("/register",function(req,res){
             return res.render('register');
         }
         passport.authenticate("local")(req, res, function(){
-            res.redirect("/secret");
+            res.redirect("/dashboard");
         });
     });
 });
@@ -99,6 +101,7 @@ app.get("/add",isLoggedIn,(req,res)=>{
     res.render("add",{login:req.isAuthenticated(),user: req.user});
 });
 app.post("/add",isLoggedIn,(req,res)=>{
+    req.body.project.description = req.sanitize(req.body.project.description);
     project.create(req.body.project,function(err,newProject){
         if(err){
             console.log(err);
@@ -125,8 +128,9 @@ function prevent(req, res, next) {
     res.redirect("/");
 }
 
+// default route if nothing match
 app.get("*",(req,res)=>{
-    res.redirect("/");
+    res.send("Sorry!!!! This Webpage is not available");
 });
 
 var port= process.env.PORT || 3000 ;

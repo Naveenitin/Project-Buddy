@@ -7,6 +7,7 @@ var projectSchema = new mongoose.Schema({
     description: String,
     url: String,
     date:{type: Date, default: Date.now}
+    
 });
 
 module.exports = mongoose.model("project",projectSchema);

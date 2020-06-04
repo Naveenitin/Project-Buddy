@@ -10,17 +10,26 @@
                 <a class="sidebar-link" href="#">Feed</a>
                 <a class="sidebar-link" href="#">Ideas</a>
                 <a class="sidebar-link" href="#">Project</a>
-                <a class="sidebar-link" href="#">Best from waste</a>
+                <a class="sidebar-link" href="#">Articles</a>
             </div>
         </nav>
     </div>
     <div class="col-12 col-md-8 container">
+        <div class="container mx-auto" style="margin: 10px;">
+            <form class="form-inline" method="GET" action="/search">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="search" class="sr-only">Search</label>
+                    <input type="text" class="form-control" id="search" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </form>
+        </div>
         <% data.forEach(obj => { %>
          <div class="container border" style="margin-bottom: 10px; margin-top: 10px;">
             <h1><%= obj.name %> </h1>
             <h6><%= obj.date.toDateString() %> </h6>
             <h2><%= obj.idea %> </h2>
-            <div><%= obj.description %></div>
+            <div><%- obj.description %></div>
          </div>
         <% }) %>
     </div>
