@@ -34,6 +34,11 @@
             <label for="project[description]">Project Description</label>
             <textarea name="project[description]" placeholder="Description" required style="width: 100%;"></textarea>    
         </div>
+        <div class="form-group">
+            <label for="project[url]">GitHub or Cloud URL of Project</label>
+            <input class="form-control" type="url" id="project[url]" name="project[url]" placeholder="Link" required>
+        </div>
+        <input type="hidden" name="project[username]" value="<%= user.username %>">
         <button class="btn btn-primary">Submit</button>
     </form>
 </div>

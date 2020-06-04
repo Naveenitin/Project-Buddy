@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var User = require("./modules/user");
+var project = require("./modules/project");
 var URL = process.env.databaseURL || 'mongodb://localhost:27017/project-buddy' ;
 mongoose.connect(URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -72,7 +73,15 @@ app.post("/login",passport.authenticate("local",{
 
 
 app.get("/",function(req,res){
-    res.render("home",{login:req.isAuthenticated()});
+    project.find(function(err,data){
+        if(err){
+            console.log(err);
+        } else {
+            // console.log(data);
+            res.render("home",{login:req.isAuthenticated(),data});
+        }
+
+    })
 });
 
 app.get("/dashboard",isLoggedIn,function(req,res){
@@ -90,8 +99,14 @@ app.get("/add",isLoggedIn,(req,res)=>{
     res.render("add",{login:req.isAuthenticated(),user: req.user});
 });
 app.post("/add",isLoggedIn,(req,res)=>{
-    // console.log(req.body);
-    res.redirect("/");
+    project.create(req.body.project,function(err,newProject){
+        if(err){
+            console.log(err);
+        } else {
+            // console.log(newProject);
+            res.redirect("/");
+        }
+    });
 });
 
 //  function is used to check to whether user is logged in or not

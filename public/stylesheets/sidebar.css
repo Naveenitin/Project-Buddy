@@ -1,0 +1,24 @@
+.sidebar{
+    border-right: 4px solid gray;
+}
+.sidebar-link:hover{
+    text-decoration: none;
+}
+.sidebar-link{
+    color: rgba(0, 0, 0, 0.884);
+}
+@media(min-width: 768px) {
+    .sidebar-link {
+        display: block;
+        margin: 10px;
+        font-weight: 600;
+    }
+}
+
+@media(max-width: 768px) {
+    .sidebar-link {
+        display: inline;
+        font-weight: 600;
+        margin: 20px;
+    }
+}

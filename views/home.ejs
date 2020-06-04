@@ -1,4 +1,29 @@
 <%- include("partials/headerHome") %> 
+<div class="jumbotron">
 
-<h1 class="d-flex align-items-center text-center" style="height: 1200px; width: 100%;">This is home page</h1>
+</div>
+<div class="row">
+    <div class="col-12 col-md-3">
+        <nav class="sidebar">
+            <div class="container">
+
+                <a class="sidebar-link" href="#">Feed</a>
+                <a class="sidebar-link" href="#">Ideas</a>
+                <a class="sidebar-link" href="#">Project</a>
+                <a class="sidebar-link" href="#">Best from waste</a>
+            </div>
+        </nav>
+    </div>
+    <div class="col-12 col-md-8 container">
+        <% data.forEach(obj => { %>
+         <div class="container border" style="margin-bottom: 10px; margin-top: 10px;">
+            <h1><%= obj.name %> </h1>
+            <h6><%= obj.date.toDateString() %> </h6>
+            <h2><%= obj.idea %> </h2>
+            <div><%= obj.description %></div>
+         </div>
+        <% }) %>
+    </div>
+    <div class="col-12 col-md-1 container"></div>
+</div>
 <%- include("partials/footer") %> 
