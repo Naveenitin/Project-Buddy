@@ -64,7 +64,7 @@ app.get("/login",prevent,function(req,res){
 
 //login logic
 app.post("/login",passport.authenticate("local",{
-    successRedirect: "/secret",
+    successRedirect: "/dashboard",
     failureRedirect: "/login"
 }),function(req,res){
 });
@@ -75,13 +75,22 @@ app.get("/",function(req,res){
     res.render("home",{login:req.isAuthenticated()});
 });
 
-app.get("/secret",isLoggedIn,function(req,res){
+app.get("/dashboard",isLoggedIn,function(req,res){
     // console.log(req.user); Gives the information of user except password
-    res.render("secret",{login:req.isAuthenticated(),user: req.user});
+    res.render("dashboard",{login:req.isAuthenticated(),user: req.user});
 });
 
 app.get("/logout",function(req,res){
     req.logOut();
+    res.redirect("/");
+});
+
+// Upload project
+app.get("/add",isLoggedIn,(req,res)=>{
+    res.render("add",{login:req.isAuthenticated(),user: req.user});
+});
+app.post("/add",isLoggedIn,(req,res)=>{
+    // console.log(req.body);
     res.redirect("/");
 });
 
@@ -100,6 +109,10 @@ function prevent(req, res, next) {
     }
     res.redirect("/");
 }
+
+app.get("*",(req,res)=>{
+    res.redirect("/");
+});
 
 var port= process.env.PORT || 3000 ;
 app.listen(port,process.env.IP,()=>{

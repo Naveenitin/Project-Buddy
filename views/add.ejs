@@ -1,0 +1,40 @@
+<%- include("partials/headerHome") %> 
+
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Hello, <%= user.firstname+" "+user.lastname %>!</h1>
+        <p class="lead">Welcome to our community.</p>
+        <hr class="my-4">
+        <p>After successful submission our project is available to our platform. However, It's varification take some time.</p>
+    </div>
+</div>
+<div class="container">
+
+    <form action="/add" method="POST">
+        <div class="form-group">
+            <label for="project[name]">Project Title</label>
+            <input class="form-control" type="text" id="project[name]" name="project[name]" placeholder="Project Title" required>
+        </div>
+        <div class="form-group">
+            <label for="project[type]">Select Major field</label>
+            <select class="custom-select" name="project[type]" id="project[type]" required>
+                <option value="" selected>Select Major fields</option>
+                <option value="1">PC/Web Application</option>
+                <option value="2">Mobile Application</option>
+                <option value="3">Game</option>
+                <option value="4">Other</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="project[idea]">What's special in this project</label>
+            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" required>
+        </div>
+        <div class="form-group">
+            <label for="project[description]">Project Description</label>
+            <textarea name="project[description]" placeholder="Description" required style="width: 100%;"></textarea>    
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<%- include("partials/footer") %> 

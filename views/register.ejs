@@ -1,8 +1,27 @@
 <%- include("partials/headerRegister") %> 
+<script> 
+          
+    // Function to check Whether both passwords 
+    // is same or not. 
+    function checkPassword(form) { 
+        password = form.password.value; 
+        cpassword = form.cpassword.value; 
 
+        // If Not same return False.     
+        if (password != cpassword) { 
+            alert ("\nPassword did not match: Please try again...") 
+            return false; 
+        } 
+
+        // If same return True. 
+        else{ 
+            return true; 
+        } 
+    } 
+</script>
 <div class="container" style="max-width: 500px;">
     <h1 class="text-center text-primary">Sign Up form</h1>
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" onSubmit = "return checkPassword(this)">
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="firstname">First Name</label>
@@ -27,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="cpassword">Confirm Password</label>
-            <input class="form-control" type="text" id="cpassword" name="cpassword" placeholder="Confirm Password" required>
+            <input class="form-control" type="password" id="cpassword" name="cpassword" placeholder="Confirm Password" required>
         </div>
         <button class="btn btn-primary">Submit</button>
     </form>

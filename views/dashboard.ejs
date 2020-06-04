@@ -1,0 +1,12 @@
+<%- include("partials/headerSecret") %> 
+<div class="container">
+
+    <h1>This is secret page</h1>
+    This is only appers when you are logged in.
+    <h2>
+        <%= user.firstname+" "+user.lastname %> 
+    </h2>
+    <h3><%= user.email %> </h3>
+    <a href="/add">Add your project</a>
+</div>
+<%- include("partials/footer") %> 
