@@ -6,7 +6,8 @@ var projectSchema = new mongoose.Schema({
     idea: String,
     description: String,
     url: String,
-    date:{type: Date, default: Date.now}
+    date:{type: Date, default: Date.now},
+    s:{type: Number, default: 0}
     
 });
 

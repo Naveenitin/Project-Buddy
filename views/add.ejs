@@ -12,8 +12,8 @@
 
     <form action="/add" method="POST">
         <div class="form-group">
-            <label for="project[name]">Project Title</label>
-            <input class="form-control" type="text" id="project[name]" name="project[name]" placeholder="Project Title" required>
+            <label for="project[name]" >Project Title</label>
+            <input class="form-control" type="text" id="project[name]" name="project[name]" placeholder="Project Title" required maxlength="20">
         </div>
         <div class="form-group">
             <label for="project[type]">Select Major field</label>
@@ -28,11 +28,11 @@
         </div>
         <div class="form-group">
             <label for="project[idea]">What's special in this project</label>
-            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" required>
+            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" required maxlength="100">
         </div>
         <div class="form-group">
             <label for="project[description]">Project Description</label>
-            <textarea name="project[description]" placeholder="Description" required style="width: 100%;"></textarea>    
+            <textarea name="project[description]" placeholder="Description" required style="width: 100%;" minlength="100" style="height: 7em;"></textarea>    
         </div>
         <div class="form-group">
             <label for="project[url]">GitHub or Cloud URL of Project</label>

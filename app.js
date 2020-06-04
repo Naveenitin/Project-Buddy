@@ -83,7 +83,7 @@ app.get("/",function(req,res){
             res.render("home",{login:req.isAuthenticated(),data});
         }
 
-    })
+    });
 });
 
 app.get("/dashboard",isLoggedIn,function(req,res){
@@ -111,6 +111,39 @@ app.post("/add",isLoggedIn,(req,res)=>{
         }
     });
 });
+
+//  search
+app.get("/search?:a",(req,res)=>{
+    project.find(function(err,data){
+        if(err){
+            console.log(err);
+        } else {
+            var arr = req.query.q.split(' ');
+            data.forEach(obj => {
+                arr.forEach( find => {
+                    
+                    obj.s = count(obj.name,find)*10 + count(obj.idea)*3 + count(obj.description,find); 
+                });
+            });
+            data.sort((a,b)=>(a.s > b.s) ? 1 : ((b.s > a.s) ? -1 : 0));
+            res.render("search",{login:req.isAuthenticated(),data});
+        }
+
+    });
+});
+function count(main_str, sub_str) 
+{
+    main_str += '';
+    sub_str += '';
+
+    if (sub_str.length <= 0) 
+    {
+        return main_str.length + 1;
+    }
+
+       subStr = sub_str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+       return (main_str.match(new RegExp(subStr, 'gi')) || []).length;
+}
 
 //  function is used to check to whether user is logged in or not
 //  this is used as middle function

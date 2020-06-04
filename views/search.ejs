@@ -1,0 +1,16 @@
+<%- include("partials/headerHome") %> 
+<div class="jumbotron">
+
+</div>
+<div class="container">
+    
+    <% data.forEach(obj => { %>
+    <div class="container border" style="margin-bottom: 10px; margin-top: 10px;">
+        <h1><%= obj.name %> </h1>
+        <h6><%= obj.date.toDateString() %> </h6>
+        <h2><%= obj.idea %> </h2>
+        <div><%- obj.description %></div>
+    </div>
+    <% }) %>
+</div>
+<%- include("partials/footer") %> 
