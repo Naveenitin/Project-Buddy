@@ -44,7 +44,7 @@ app.get("/register",prevent,function(req,res){
 
 //  handling user sign up
 app.post("/register",function(req,res){
-    User.register(new User({username: req.body.username}), req.body.password, function(err,user){
+    User.register(new User({username: req.body.username,firstname: req.body.firstname,lastname: req.body.lastname,email: req.body.email}), req.body.password, function(err,user){
         if(err){
             console.log(err);
             return res.render('register');
@@ -76,7 +76,8 @@ app.get("/",function(req,res){
 });
 
 app.get("/secret",isLoggedIn,function(req,res){
-    res.render("secret",{login:req.isAuthenticated()});
+    // console.log(req.user); Gives the information of user except password
+    res.render("secret",{login:req.isAuthenticated(),user: req.user});
 });
 
 app.get("/logout",function(req,res){
@@ -102,5 +103,5 @@ function prevent(req, res, next) {
 
 var port= process.env.PORT || 3000 ;
 app.listen(port,process.env.IP,()=>{
-    console.log("Server is startedher");
+    console.log("Server is started");
 });
