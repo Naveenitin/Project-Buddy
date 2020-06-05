@@ -146,13 +146,12 @@ app.get("/search?:a",(req,res)=>{
         } else {
             var arr = req.query.q.split(' ');
             data.forEach(obj => {
-                arr.forEach( find => {
-                    
-                    obj.s = count(obj.name,find)*10 + count(obj.idea)*3 + count(obj.description,find); 
+                arr.forEach( find => {                    
+                    obj.s += count(obj.name,find)*10 + count(obj.idea)*3 + count(obj.description,find); 
                 });
             });
-            data.sort((a,b)=>(a.s > b.s) ? 1 : ((b.s > a.s) ? -1 : 0));
-            res.render("search",{login:req.isAuthenticated(),data});
+            data.sort((a,b)=>(a.s < b.s) ? 1 : ((b.s < a.s) ? -1 : 0));
+            res.render("search",{login:req.isAuthenticated(),data,q:req.query.q});
         }
 
     });

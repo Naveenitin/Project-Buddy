@@ -1,11 +1,11 @@
 <%- include("partials/headerHome") %> 
 
-<div class="jumbotron">
+<div class="jumbotron" style="color: black;">
     <div class="container">
         <h1 class="display-4">Hello, <%= user.firstname+" "+user.lastname %>!</h1>
         <p class="lead">Welcome to our community.</p>
         <hr class="my-4">
-        <p>After successful submission our project is available to our platform. However, It's varification take some time.</p>
+        <p>Everybody is smarter than anybody. Share the knowledge that makes you smater than Everybody.</p>
     </div>
 </div>
 <div class="container">
@@ -25,11 +25,11 @@
         </div>
         <div class="form-group hidden" id="1">
             <label for="project[idea]">What's special in this project/idea</label>
-            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" required maxlength="150">
+            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" maxlength="150">
         </div>
         <div class="form-group">
             <label for="project[image]">Image url</label>
-            <input class="form-control" type="url" id="project[image]" name="project[image]" placeholder="Image URL to support (Optional)" required>
+            <input class="form-control" type="url" id="project[image]" name="project[image]" placeholder="Image URL to support (Optional)">
         </div>
         <div class="form-group">
             <label for="project[description]">Description</label>

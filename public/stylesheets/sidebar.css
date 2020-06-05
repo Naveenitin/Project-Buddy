@@ -8,6 +8,10 @@
     color: rgba(0, 0, 0, 0.884);
 }
 @media(min-width: 768px) {
+    #myfixed{
+        position: fixed;
+        margin-left: 10px;
+    }
     .sidebar-link {
         display: block;
         margin: 10px;
