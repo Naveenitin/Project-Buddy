@@ -88,7 +88,15 @@ app.get("/",function(req,res){
 
 app.get("/dashboard",isLoggedIn,function(req,res){
     // console.log(req.user); Gives the information of user except password
-    res.render("dashboard",{login:req.isAuthenticated(),user: req.user});
+    project.find({username:req.user.username},function(err,data){
+        if(err){
+            console.log(err);
+        } else {
+            // console.log(data);
+            res.render("dashboard",{login:req.isAuthenticated(),user: req.user,data:data});
+        }
+
+    });
 });
 
 app.get("/logout",function(req,res){
@@ -101,6 +109,7 @@ app.get("/add",isLoggedIn,(req,res)=>{
     res.render("add",{login:req.isAuthenticated(),user: req.user});
 });
 app.post("/add",isLoggedIn,(req,res)=>{
+    req.body.project.username=req.user.username;
     req.body.project.description = req.sanitize(req.body.project.description);
     project.create(req.body.project,function(err,newProject){
         if(err){
@@ -109,6 +118,23 @@ app.post("/add",isLoggedIn,(req,res)=>{
             // console.log(newProject);
             res.redirect("/");
         }
+    });
+});
+
+//view single
+app.get("/view/:id",(req,res)=>{
+    // console.log(req.params);
+    project.findById(req.params.id,function(err,data){
+        if(err){
+            console.log(err);
+        } else {
+            // console.log(data);
+            if(req.isAuthenticated() && data.username==req.user.username)
+            res.render("viewown",{login:req.isAuthenticated(),obj:data});
+            else
+            res.render("view",{login:req.isAuthenticated(),obj:data});
+        }
+        // res.send("Not found");
     });
 });
 

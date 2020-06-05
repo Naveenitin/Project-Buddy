@@ -1,6 +1,9 @@
 #logo{
     font-size: 2em;
 }
-textarea{
-    height: 7em;
+.desc{
+    height: 20em;
+}
+.hidden{
+    display: none;
 }

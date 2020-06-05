@@ -10,40 +10,37 @@
 </div>
 <div class="container">
 
-    <form action="/add" method="POST">
+    <form action="/add" method="POST" id="myForm">
         <div class="form-group">
-            <label for="project[name]" >Project Title</label>
-            <input class="form-control" type="text" id="project[name]" name="project[name]" placeholder="Project Title" required maxlength="50">
-        </div>
-        <div class="form-group">
-            <label for="project[type]">Select Major field</label>
-            <select class="custom-select" name="project[type]" id="project[type]" required>
-                <option value="" selected>Select Major fields</option>
-                <option value="PC/Web Application">PC/Web Application</option>
-                <option value="Mobile Application">Mobile Application</option>
-                <option value="Game">Game</option>
-                <option value="Other">Other</option>
-
+            <label for="project[type]">Select type</label>
+            <select class="custom-select" onchange="addtype()" name="project[type]" id="project[type]">
+                <option value="article" selected>Article</option>
+                <option value="project">Project</option>
+                <option value="idea">Ideas</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="project[idea]">What's special in this project</label>
-            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" required maxlength="100">
+            <label for="project[name]" >Title</label>
+            <input class="form-control" type="text" id="project[name]" name="project[name]" placeholder="Title" required maxlength="100">
+        </div>
+        <div class="form-group hidden" id="1">
+            <label for="project[idea]">What's special in this project/idea</label>
+            <input class="form-control" type="text" id="project[idea]" name="project[idea]" placeholder="Idea behind the project" required maxlength="150">
         </div>
         <div class="form-group">
             <label for="project[image]">Image url</label>
             <input class="form-control" type="url" id="project[image]" name="project[image]" placeholder="Image URL to support (Optional)" required>
         </div>
         <div class="form-group">
-            <label for="project[description]">Project Description</label>
-            <textarea name="project[description]" placeholder="Description" required style="width: 100%;" minlength="100" style="width: 300px;"></textarea>    
+            <label for="project[description]">Description</label>
+            <textarea class="desc" name="project[description]" placeholder="Description" required style="width: 100%;" minlength="100" style="width: 300px;"></textarea>    
         </div>
-        <div class="form-group">
-            <label for="project[url]">GitHub or Cloud URL of Project</label>
-            <input class="form-control" type="url" id="project[url]" name="project[url]" placeholder="Link" required>
+        <div class="form-group hidden" id="2">
+            <label for="project[url]">GitHub or Cloud URL of Project/Idea</label>
+            <input class="form-control" type="url" id="project[url]" name="project[url]" placeholder="Link">
         </div>
-        <input type="hidden" name="project[username]" value="<%= user.username %>">
         <button class="btn btn-primary">Submit</button>
     </form>
 </div>
+<script type="text/javascript" src="/scripts/add.js"></script>
 <%- include("partials/footer") %> 

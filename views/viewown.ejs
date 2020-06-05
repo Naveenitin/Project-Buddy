@@ -1,0 +1,24 @@
+<%- include("partials/headerHome") %> 
+<div style="margin: 100px;">
+
+    <div class="container">
+        <div class="container border" style="margin-bottom: 10px; margin-top: 10px;">
+            <div class="dropdown text-right">
+                <svg type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="bi bi-three-dots-vertical dropdown-toggle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Edit</a>
+                  <a class="dropdown-item" href="#">Delete</a>
+                </div>
+              </div>
+            <h2><%= obj.name %> </h2>
+            <img src="<%= obj.image %>" class="img-fluid" alt="Responsive image" style="max-height: 500px;">
+            <p class="text-left"><small><%= obj.date.toDateString() %></small></p>
+            <blockquote><%= obj.idea %></blockquote>
+            <div><%- obj.description %></div>
+        </div>
+        
+    </div>
+</div>
+<%- include("partials/footer") %> 

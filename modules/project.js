@@ -8,6 +8,8 @@ var projectSchema = new mongoose.Schema({
     username: String,
     description: String,
     url: String,
+    like:{type:Number, default:0},
+    comment:Array,
     date:{type: Date, default: Date.now},
     s:{type: Number, default: 0}
     

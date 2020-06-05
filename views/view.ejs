@@ -1,0 +1,17 @@
+<%- include("partials/headerHome") %> 
+<div style="margin: 100px;">
+
+    <div class="container">
+        <div class="container border" style="margin-bottom: 10px; margin-top: 10px;">
+            
+            <h2><%= obj.name %> </h2>
+            <img src="<%= obj.image %>" class="img-fluid" alt="Responsive image" style="max-height: 500px;">
+            <p class="text-left"><small><%= obj.date.toDateString() %></small>
+            <p class="text-left" ><small>By:-<%= obj.username %></small>
+            <blockquote><%= obj.idea %></blockquote>
+            <div><%- obj.description %></div>
+        </div>
+        
+    </div>
+</div>
+<%- include("partials/footer") %> 

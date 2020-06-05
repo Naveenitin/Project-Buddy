@@ -6,10 +6,15 @@
     
     <% data.forEach(obj => { %>
     <div class="container border" style="margin-bottom: 10px; margin-top: 10px;">
-        <h1><%= obj.name %> </h1>
-        <h6><%= obj.date.toDateString() %> </h6>
-        <h2><%= obj.idea %> </h2>
-        <div><%- obj.description %></div>
+        <a href="#" class="text-decoration-none"><h1><%= obj.name %> </h1></a>
+        <h6><%= obj.type %>,  <%= obj.date.toDateString() %> </h6>
+        <% if (obj.type!="attricle") { %>
+            <p><%= obj.idea %></p>
+        <% } else { %>
+            <p><%= obj.description.substring(0,150) %>... </p>
+        <% } %>
+    
+    
     </div>
     <% }) %>
 </div>
